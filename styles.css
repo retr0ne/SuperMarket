@@ -1,0 +1,133 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    width: 80%;
+    max-width: 960px;
+    overflow: hidden;
+}
+
+.left-side {
+    background-color: #2ECC71;
+    color: #114E2B;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+}
+
+.logo {
+    width: 200px; /* Ajusta el tamaño según necesites */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.left-side h1 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+    color: #fff; /* Cambio de color a blanco */
+}
+
+.right-side {
+    padding: 40px;
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom-left-radius: 20px; /* Redondeo inferior izquierdo */
+    border-top-left-radius: 20px;    /* Redondeo superior izquierdo */
+}
+
+.right-side h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.login-button {
+    background-color: #2ECC71;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #27AE60;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        width: 95%;
+    }
+
+    .left-side {
+        width: 100%;
+        padding: 30px;
+        align-items: center;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    .left-side h1 {
+        font-size: 1.5em;
+    }
+
+    .right-side {
+        width: 100%;
+        padding: 30px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        border-top-left-radius: 0; /* Eliminar redondeo superior izquierdo en pantallas pequeñas */
+    }
+
+    .right-side h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+}
