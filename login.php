@@ -5,9 +5,6 @@ $db = conectarDB();
 $errores = [];
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // echo "<pre>";
-        // var_dump($_POST);
-        // echo "</pre>";
 
         //Valida que no sea sql y que no sea vacio y que el correo sea valido
         $email = mysqli_real_escape_string($db, filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
@@ -18,7 +15,7 @@ $errores = [];
         }
 
         if (!$password) {
-            $errores[] = "El password es obligatorio";
+            $errores[] = "La contraseña es obligatoria";
         }
 
         // echo "<pre>";
