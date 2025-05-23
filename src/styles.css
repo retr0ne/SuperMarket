@@ -98,7 +98,351 @@ body {
 .login-button:hover {
     background-color: #27AE60;
 }
+/*Estilos inventario*/
+/* Colores principales - Mantenemos estas variables, son una buena práctica */
+:root {
+    --green-main: #2ECC71;
+    --dark-green-text: #114E2B;
+    --light-gray-bg: #f4f4f4;
+    --white: #fff;
+    --dark-grey: #333;
+    --medium-grey: #555;
+    --light-border: #ddd;
+    --header-height: 70px; /* Definimos la altura del header como variable */
+}
 
+/* Base body styles (from previous styles.css, ensure no conflicts) */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: var(--light-gray-bg);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Bloque Header */
+.header {
+    background-color: var(--green-main);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: var(--white);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: var(--header-height); /* Usamos la variable */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    box-sizing: border-box; /* Incluye padding en el ancho total */
+}
+
+/* Elementos del Bloque Header (sin cambios, solo el padding y gap que ya estaban) */
+.header__nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header__button {
+    background-color: transparent;
+    border: none;
+    color: var(--white);
+    padding: 10px 15px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header__button:hover:not(.header__button--active) {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Modificador del Elemento header__button */
+.header__button--active {
+    background-color: var(--dark-green-text);
+    font-weight: bold;
+}
+
+/* Estilo para los iconos de Bootstrap (solo para el usuario y la lupa si se mantienen) */
+.header__button-icon {
+    font-size: 1.5em; /* Ajusta el tamaño de los iconos de Bootstrap */
+    color: var(--white); /* Asegura que los iconos de Bootstrap sean blancos */
+}
+
+.header__logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.header__logo-image {
+    height: 40px;
+    filter: brightness(0) invert(1); /* Para hacerla blanca */
+}
+
+/* Bloque Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown__toggle-button {
+    /* Hereda estilos de .header__button */
+}
+
+.dropdown__content {
+    display: none;
+    position: absolute;
+    background-color: var(--white);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100; /* Asegura que esté por encima del contenido principal */
+    border-radius: 5px;
+    overflow: hidden;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown__content.dropdown__content--show {
+    display: block;
+}
+
+.dropdown__item {
+    color: var(--dark-grey);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown__item:hover {
+    background-color: var(--light-gray-bg);
+}
+
+/* Bloque Main Layout - Contenedor principal del contenido */
+.main-layout {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    background-color: var(--light-gray-bg);
+    flex-grow: 1; /* Permite que ocupe el espacio restante */
+}
+
+/* Bloque Inventory Table Section - Contenedor de la tabla */
+.inventory-table-section {
+    flex: 3;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow-y: auto; /* Permite scroll solo en esta sección si el contenido es largo */
+    height: calc(100vh - var(--header-height) - (20px * 2)); /* 20px * 2 por el padding superior e inferior de .main-layout */
+    padding-bottom: 1px;
+}
+
+/* Bloque Inventory Table */
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+/* Elementos del Bloque Inventory Table */
+.inventory-table__header {
+    background-color: var(--green-main);
+    color: var(--white);
+    position: sticky; /* Hacemos el encabezado de la tabla sticky */
+    top: 0;
+    z-index: 1;
+}
+
+.inventory-table__heading,
+.inventory-table__data {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--light-border);
+}
+
+.inventory-table__heading {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.inventory-table__body .inventory-table__row:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.inventory-table__body .inventory-table__row:hover {
+    background-color: #f1f1f1;
+}
+
+/* Bloque Category Sidebar - El menú lateral */
+.category-sidebar {
+    flex: 1;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    position: sticky;
+    top: calc(var(--header-height) + 20px); /* Se pega debajo del header + padding del main-layout */
+    height: fit-content;
+    max-height: calc(100vh - var(--header-height) - (20px * 2));
+    align-self: flex-start;
+    overflow-y: auto;
+}
+
+/* Elementos del Bloque Category Sidebar (sin cambios) */
+.category-sidebar__title {
+    color: var(--dark-grey);
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Bloque Search Bar */
+.search-bar {
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid var(--light-border);
+    border-radius: 25px;
+    overflow: hidden;
+    height: 40px;
+}
+
+/* Elementos del Bloque Search Bar */
+.search-bar__input {
+    flex-grow: 1;
+    border: none;
+    padding: 0 15px;
+    font-size: 1em;
+    outline: none;
+}
+
+.search-bar__input::placeholder {
+    color: #aaa;
+}
+
+.search-bar__button {
+    background-color: transparent;
+    border: none;
+    padding: 0 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar__button:hover {
+    background-color: var(--light-gray-bg);
+}
+
+.search-bar__icon {
+    font-size: 1.2em; /* Ajusta el tamaño del icono de búsqueda de Bootstrap */
+    color: var(--dark-grey); /* Color del icono de búsqueda */
+}
+
+/* Bloque Category List */
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.category-list__item {
+    background-color: var(--green-main);
+    color: var(--white);
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+}
+
+.category-list__item:hover {
+    background-color: var(--dark-green-text);
+}
+
+/* Estilo para las imágenes de iconos de categoría */
+.category-list__icon-img { /* Nueva clase para las imágenes de categoría */
+    width: 28px; /* Ajusta el tamaño de la imagen según necesites */
+    height: 28px;
+    object-fit: contain; /* Asegura que la imagen se vea bien */
+    /* Si tus PNGs son negros y quieres que se vean blancos sobre el fondo verde,
+       puedes aplicar este filtro: */
+    /* filter: brightness(0) invert(1); */
+}
+
+
+/* Media Queries para responsividad */
+@media (max-width: 992px) {
+    .main-layout {
+        flex-direction: column;
+    }
+
+    .inventory-table-section {
+        flex: none;
+        width: 100%;
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .category-sidebar {
+        flex: none;
+        width: 100%;
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .header__nav {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .header__button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .header__logo-container {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .main-layout {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .inventory-table__heading,
+    .inventory-table__data {
+        padding: 8px 10px;
+        font-size: 0.85em;
+    }
+
+    .category-sidebar__title {
+        font-size: 1.3em;
+    }
+}
 /* Estilos responsivos */
 @media (max-width: 768px) {
     .login-container {
