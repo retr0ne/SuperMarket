@@ -1,5 +1,5 @@
 <?php 
-require 'database.php';
+require 'includes/app.php';
 $db = conectarDB();
 
 $nombre = "Bryan";
@@ -15,4 +15,6 @@ $query = "INSERT INTO usuario (nombre, apellido, correo, contraseña, Rol_id) VA
 echo $query;
 
 mysqli_query($db, $query);
+
+header('Location: /');
 ?>

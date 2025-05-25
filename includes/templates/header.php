@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuperMarket - Login</title>
+    <title>SuperMarket<?php if (isset($login) && $login === true): ?> - Login<?php endif; ?></title>
     <link rel="stylesheet" href="src/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -14,7 +14,13 @@
         <div class="header__nav">
             <button class="header__button header__button--user">
                 <i class="bi bi-person-fill header__button-icon"></i>
-                <span>Bryan C.</span>
+                <span><?php
+                    if (isset($_SESSION['nombre']) && isset($_SESSION['apellido'])) {
+                        echo $_SESSION['nombre'] . ' ' . $_SESSION['apellido'];
+                    } else {
+                        echo 'Usuario';
+                    }
+                ?></span>
             </button>
             <button class="header__button header__button--active">Inventario</button>
             <div class="header__dropdown dropdown">

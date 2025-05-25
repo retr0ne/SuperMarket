@@ -37,18 +37,16 @@ $errores = [];
                 $auth = password_verify($password, $usuario["contraseña"]);
 
                 if ($auth) {
-                    // //Usuario autenticado
-                    // session_start();
+                    //Usuario autenticado
+                    session_start();
 
-                    // //llenar el arreglo de la sesion
-                    // $_SESSION['nombre'] = $usuario['nombre'];
-                    // $_SESSION['apellido'] = $usuario['apellido'];
-                    // $_SESSION['correo'] = $usuario['correo'];
-                    // $_SESSION['login'] = true;
+                    //llenar el arreglo de la sesion
+                    $_SESSION['nombre'] = $usuario['nombre'];
+                    $_SESSION['apellido'] = $usuario['apellido'];
+                    $_SESSION['correo'] = $usuario['correo'];
+                    $_SESSION['login'] = true;
 
-                    // header('Location: /admin');
-
-                    echo "Iniciaste Sesion";
+                    header('Location: /inventory.php');
                 } else {
                     $errores[] = "La contraseña es incorrecta";
                 }
