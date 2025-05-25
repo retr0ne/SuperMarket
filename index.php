@@ -59,11 +59,9 @@ $errores = [];
     }
 
 // Incluir el template
-incluirTemplate('header');
+incluirTemplate('header', true);
 ?>
 
-
-<body>
     <div class="login-container">
         <div class="left-side">
             <img src="src/img/logo_whitecrown.png" alt="Logo" class="logo">

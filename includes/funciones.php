@@ -2,7 +2,7 @@
 
 define('TEMPLATE_URL', __DIR__ . '/templates');
 
-function incluirTemplate(string $nombre) {
+function incluirTemplate(string $nombre, bool $login = false) {
     include TEMPLATE_URL . "/{$nombre}.php";
 }
 
